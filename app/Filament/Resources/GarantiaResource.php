@@ -62,8 +62,10 @@ class GarantiaResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('ticket')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('cliente_id')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('cliente.apellidos')
+                    ->label('Cliente')
+                    ->formatStateUsing(fn ($state, $record) => "{$record->cliente->apellidos} {$record->cliente->nombre}")
+                    ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('estado'),
                 Tables\Columns\TextColumn::make('created_at')
